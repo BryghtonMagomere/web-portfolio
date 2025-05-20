@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 // Import icons from react-icons
-import { FaFilm, FaCamera, FaVideo, FaInstagram, FaTiktok, FaPhone, FaWhatsapp, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaFilm, FaCamera, FaVideo, FaInstagram, FaTiktok, FaPhone, FaWhatsapp, FaExternalLinkAlt, FaBars, FaTimes } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 
 // --- Main App Component ---
 function App() {
   const [currentSection, setCurrentSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
   const contactRef = useRef(null);
 
   // Function to handle smooth scrolling when navigating
   const scrollToSection = (sectionId) => {
     setCurrentSection(sectionId);
+    setIsMobileMenuOpen(false); // Close mobile menu on navigation
     setTimeout(() => {
       const sectionElement = document.getElementById(sectionId);
       if (sectionElement) {
@@ -24,6 +26,7 @@ function App() {
     if (contactRef.current) {
       contactRef.current.scrollIntoView({ behavior: 'smooth' });
       setCurrentSection('contact');
+      setIsMobileMenuOpen(false); // Close mobile menu
     }
   };
 
@@ -47,18 +50,34 @@ function App() {
   return (
     <div className="min-h-screen bg-[#16151A] text-[#FFE4D0] font-sans antialiased scroll-smooth pt-28 md:pt-32">
       {/* Navigation Bar */}
-      <nav className="bg-[#16151A] bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-xl py-6 px-4 fixed w-full top-0 z-20 border-b border-[#F67011]">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-          <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#F67011] to-[#873800] mb-3 md:mb-0 cursor-pointer hover:opacity-90 transition duration-300"
+      <nav className="bg-[#16151A] bg-opacity-90 backdrop-filter backdrop-blur-lg shadow-xl py-4 px-4 fixed w-full top-0 z-20 border-b border-[#F67011]">
+        <div className="container mx-auto flex flex-wrap justify-between items-center">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#F67011] to-[#873800] cursor-pointer hover:opacity-90 transition duration-300"
             onClick={() => scrollToSection('home')}
           >
             Bradley Magomere <span className="font-light text-[#878787] text-lg tracking-wide">(Director Brad)</span>
           </h1>
 
-          <ul className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-lg" aria-label="Main navigation">
+          {/* Mobile Menu Button (Hamburger/Close Icon) */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-[#FFE4D0] hover:text-[#F67011] focus:outline-none focus:ring-2 focus:ring-[#F67011] p-2 rounded-md"
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          {/* Hidden on small screens by default, shown when isMobileMenuOpen is true OR on medium and larger screens */}
+          <ul
+            className={`w-full md:w-auto md:flex md:flex-row md:items-center md:gap-x-6 gap-y-2 text-lg mt-4 md:mt-0 ${isMobileMenuOpen ? 'flex flex-col items-center space-y-4 py-4' : 'hidden'}`}
+            aria-label="Main navigation"
+          >
             <li>
               <button
-                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-1 rounded-md ${currentSection === 'home' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
+                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-2 rounded-md w-full text-center ${currentSection === 'home' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
                 onClick={() => scrollToSection('home')}
                 aria-current={currentSection === 'home' ? 'page' : undefined}
               >
@@ -67,7 +86,7 @@ function App() {
             </li>
             <li>
               <button
-                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-1 rounded-md ${currentSection === 'about' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
+                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-2 rounded-md w-full text-center ${currentSection === 'about' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
                 onClick={() => scrollToSection('about')}
                 aria-current={currentSection === 'about' ? 'page' : undefined}
               >
@@ -76,7 +95,7 @@ function App() {
             </li>
             <li>
               <button
-                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-1 rounded-md ${currentSection === 'services' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
+                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-2 rounded-md w-full text-center ${currentSection === 'services' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
                 onClick={() => scrollToSection('services')}
                 aria-current={currentSection === 'services' ? 'page' : undefined}
               >
@@ -85,7 +104,7 @@ function App() {
             </li>
             <li>
               <button
-                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-1 rounded-md ${currentSection === 'portfolio' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
+                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-2 rounded-md w-full text-center ${currentSection === 'portfolio' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
                 onClick={() => scrollToSection('portfolio')}
                 aria-current={currentSection === 'portfolio' ? 'page' : undefined}
               >
@@ -94,7 +113,7 @@ function App() {
             </li>
             <li>
               <button
-                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-1 rounded-md ${currentSection === 'contact' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
+                className={`text-[#878787] hover:text-[#F67011] transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#F67011] focus:ring-opacity-50 px-3 py-2 rounded-md w-full text-center ${currentSection === 'contact' ? 'font-semibold text-[#F67011] border-b-2 border-[#F67011]' : ''}`}
                 onClick={() => scrollToSection('contact')}
                 aria-current={currentSection === 'contact' ? 'page' : undefined}
               >
@@ -128,10 +147,10 @@ function Home() {
         Expertise in Directing, Photography, Videography, and Editing.
       </p>
       <img
-        src="src\assets\12.jpg" // Placeholder image
+        src="\12.jpg" // IMPORTANT: Assumes '12.jpg' is in 'public/assets/'
         alt="Creative visual work showcase by Director Brad"
         className="mx-auto rounded-lg shadow-2xl max-w-full h-auto animate-fade-in transform hover:scale-105 transition duration-500 z-10 border-2 border-[#F67011]"
-        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1200x600/16151A/FFE4D0?text=Visual+Load+Failed' }}
+        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/1200x600/16151A/FFE4D0?text=Visual+Load+Failed'; }}
       />
     </section>
   );
@@ -142,10 +161,10 @@ function About() {
   return (
     <section id="about" className="bg-[#262626] p-8 md:p-12 rounded-xl shadow-2xl flex flex-col md:flex-row items-center gap-8 md:gap-12 border-2 border-[#F67011]">
       <img
-        src="src\assets\13.jpg" // Placeholder image
+        src="\13.jpg" // IMPORTANT: Assumes '13.jpg' is in 'public/assets/'
         alt="Headshot of Bradley Magomere (Director Brad)"
         className="rounded-full w-40 h-40 sm:w-48 sm:h-48 object-cover shadow-xl animate-fade-in-left flex-shrink-0 border-4 border-[#F67011] mx-auto md:mx-0"
-        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/350x350/262626/FFE4D0?text=Image+Load+Failed' }}
+        onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/350x350/262626/FFE4D0?text=Image+Load+Failed'; }}
       />
       <div className="flex-1 animate-fade-in-right text-center md:text-left">
         <h2 className="text-3xl sm:text-4xl font-bold text-[#FFE4D0] mb-4 md:mb-6">About Director Brad</h2>
@@ -263,7 +282,7 @@ function Portfolio({ onContactClick }) {
       id: 17,
       type: 'google_photo_link',
       title: 'Event Photography Gallery',
-      thumbnailUrl: 'https://placehold.co/600x400/16151A/FFE4D0?text=Event+Highlights',
+      thumbnailUrl: 'https://placehold.co/600x400/16151A/FFE4D0?text=Event+Highlights', // Placeholder, replace with actual if available or keep as is
       actualLink: 'https://photos.app.goo.gl/BEFedPutYQqzpasaA',
       description: 'A curated collection of event photography. Click image to view gallery.',
     },
@@ -271,7 +290,7 @@ function Portfolio({ onContactClick }) {
       id: 18,
       type: 'google_photo_link',
       title: 'Creative Projects Showcase',
-      thumbnailUrl: 'https://placehold.co/600x400/16151A/FFE4D0?text=Creative+Work',
+      thumbnailUrl: 'https://placehold.co/600x400/16151A/FFE4D0?text=Creative+Work', // Placeholder
       actualLink: 'https://photos.app.goo.gl/FL23nB3p2NbMERbS8',
       description: 'Diverse visual projects and creative captures. Click image to explore.',
     },
@@ -355,15 +374,21 @@ function Portfolio({ onContactClick }) {
         script.src = src;
         script.id = id;
         script.async = true;
-        script.defer = true;
+        script.defer = true; // Ensure scripts load in order if dependent, though these are independent
         document.body.appendChild(script);
         script.onload = () => {
           if (callback) callback();
         };
+        script.onerror = () => {
+            console.error(`Failed to load script: ${src}`);
+        };
       } else if (callback) {
+        // If script already exists, try to run callback, especially for re-processing embeds
         if (id === 'instagram-embed-script' && window.instgrm && typeof window.instgrm.Embeds.process === 'function') {
             window.instgrm.Embeds.process();
-        } else if (callback) {
+        } else if (id === 'tiktok-embed-script') { // TikTok might not need explicit reprocessing this way
+            callback(); // Or specific TikTok reprocessing if available
+        } else {
             callback();
         }
       }
@@ -373,7 +398,10 @@ function Portfolio({ onContactClick }) {
     const hasInstagram = portfolioItems.some(item => item.type === 'instagram');
 
     if (hasTikTok) {
-      loadScript('https://www.tiktok.com/embed.js', 'tiktok-embed-script');
+      loadScript('https://www.tiktok.com/embed.js', 'tiktok-embed-script', () => {
+        // TikTok usually auto-processes, but a check or manual trigger could be added if needed
+        // e.g. if (typeof window.tiktok?.embed?.process === 'function') window.tiktok.embed.process();
+      });
     }
 
     if (hasInstagram) {
@@ -383,7 +411,14 @@ function Portfolio({ onContactClick }) {
         }
       });
     }
-  }, [portfolioItems]);
+    // Clean up scripts if component unmounts (optional, but good practice for SPAs if scripts cause issues on re-renders)
+    // return () => {
+    //   const tiktokScript = document.getElementById('tiktok-embed-script');
+    //   if (tiktokScript) tiktokScript.remove();
+    //   const instagramScript = document.getElementById('instagram-embed-script');
+    //   if (instagramScript) instagramScript.remove();
+    // };
+  }, [portfolioItems]); // Rerun if portfolioItems change (though they are memoized)
 
 
   return (
@@ -394,7 +429,7 @@ function Portfolio({ onContactClick }) {
           <div key={item.id} className="bg-[#16151A] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105 animate-fade-in border border-[#F67011] flex flex-col">
             {/* Media container */}
             <div className="flex-shrink-0">
-              {item.type === 'photo' && (
+              {item.type === 'photo' && ( // This type is not used in your current portfolioItems, but kept for future
                 <img
                   src={item.mediaUrl}
                   alt={item.title}
@@ -408,7 +443,7 @@ function Portfolio({ onContactClick }) {
               {item.type === 'google_photo_link' && (
                  <a href={item.actualLink} target="_blank" rel="noopener noreferrer" className="block w-full h-60 group relative bg-black">
                     <img
-                        src={item.thumbnailUrl}
+                        src={item.thumbnailUrl} // Using thumbnailUrl for display
                         alt={item.title}
                         className="w-full h-full object-cover transition duration-300 group-hover:opacity-60"
                         onError={(e) => {
@@ -422,7 +457,7 @@ function Portfolio({ onContactClick }) {
                     </div>
                 </a>
               )}
-              {item.type === 'video' && (
+              {item.type === 'video' && ( // This type is not used in your current portfolioItems
                 <div className="relative w-full aspect-video">
                   <iframe
                     src={item.mediaUrl}
@@ -435,14 +470,14 @@ function Portfolio({ onContactClick }) {
                 </div>
               )}
               {item.type === 'tiktok' && (
-                <div className="relative w-full flex justify-center bg-black">
+                <div className="relative w-full flex justify-center bg-black min-h-[500px] sm:min-h-[550px] md:min-h-[600px]"> {/* Added min-height for better embed loading */}
                   <blockquote
                     className="tiktok-embed"
                     cite={item.mediaUrl}
-                    data-video-id={item.mediaUrl.split('/').pop().split('?')[0]}
-                    style={{ maxWidth: '605px', minWidth: '325px', margin: '0 auto' }}
+                    data-video-id={item.mediaUrl.split('/').pop().split('?')[0]} // Extracts video ID
+                    style={{ maxWidth: '100%', minWidth: '300px', margin: '0 auto', height: '100%' }} // Adjusted style for responsiveness
                   >
-                    <section>
+                    <section className="p-2 text-xs text-gray-400"> {/* Fallback content style */}
                        <a target="_blank" rel="noopener noreferrer" title={`TikTok by @${item.mediaUrl.split('@')[1]?.split('/')[0] || 'director_brad'}`} href={item.mediaUrl}>
                          View TikTok by @{item.mediaUrl.split('@')[1]?.split('/')[0] || 'director_brad'} - {item.title}
                        </a>
@@ -452,7 +487,7 @@ function Portfolio({ onContactClick }) {
                 </div>
               )}
               {item.type === 'instagram' && (
-                <div className="relative w-full flex justify-center bg-white">
+                <div className="relative w-full flex justify-center bg-white min-h-[500px] sm:min-h-[580px]"> {/* Added min-height for better embed loading */}
                   <blockquote
                     className="instagram-media"
                     data-instgrm-captioned
@@ -461,10 +496,11 @@ function Portfolio({ onContactClick }) {
                     style={{
                       background: '#FFF', border: '0', borderRadius: '3px',
                       boxShadow: '0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)',
-                      margin: '1px auto', maxWidth: '540px', minWidth: '326px',
+                      margin: '1px auto', maxWidth: 'calc(100% - 2px)', minWidth: '300px', // Adjusted for responsiveness
                       padding: '0', width: 'calc(100% - 2px)',
                     }}
                   >
+                    {/* Fallback content while Instagram embed loads */}
                     <div style={{ padding: '16px' }}>
                       <a
                         href={item.mediaUrl}
@@ -481,7 +517,8 @@ function Portfolio({ onContactClick }) {
                         </div>
                         <div style={{ padding: '19% 0' }}></div>
                         <div style={{ display: 'block', height: '50px', margin: '0 auto 12px', width: '50px' }}>
-                          <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg>
+                          {/* Basic SVG Placeholder for Instagram Icon */}
+                          <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg"><g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg>
                         </div>
                         <div style={{ paddingTop: '8px' }}>
                           <div style={{ color: '#3897f0', fontFamily: 'Arial,sans-serif', fontSize: '14px', fontStyle: 'normal', fontWeight: '550', lineHeight: '18px' }}>View this post on Instagram</div>
@@ -524,7 +561,7 @@ const Contact = React.forwardRef((props, ref) => {
   const whatsappMessage = encodeURIComponent("Hello Director Brad, I saw your portfolio website and would like to discuss a project.");
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
   const callLink = `tel:${formattedPhoneNumber.replace(/\s/g, '')}`;
-  const emailAddress = 'magomerebrad018@gmail.com'; // Replace with actual email
+  const emailAddress = 'magomerebrad018@gmail.com';
   const socialLinks = {
     instagram: "https://www.instagram.com/Urban_brad_finesse",
     tiktok: "https://www.tiktok.com/@director_brad",
@@ -543,6 +580,7 @@ const Contact = React.forwardRef((props, ref) => {
             Phone: <a href={callLink} className="text-[#FFE4D0] hover:underline ml-2">{formattedPhoneNumber}</a>
           </p>
           <p className="flex items-center">
+            {/* Using a simple SVG for email icon as an example if react-icons doesn't have a specific one you prefer */}
             <svg className="w-5 h-5 md:w-6 md:h-6 inline-block mr-2 text-[#F67011]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-12-8.713v16h24v-16h-24zm1.942 2l10.058 8.156 10.058-8.156h-20.116z" /></svg>
             Email: <a href={`mailto:${emailAddress}`} className="text-[#FFE4D0] hover:underline ml-2">{emailAddress}</a>
           </p>
@@ -588,7 +626,6 @@ const Contact = React.forwardRef((props, ref) => {
     </section>
   );
 });
-Contact.displayName = 'Contact';
-
+Contact.displayName = 'Contact'; // Good practice for forwardRef components for debugging
 
 export default App;
