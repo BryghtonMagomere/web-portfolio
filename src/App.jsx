@@ -55,7 +55,7 @@ function App() {
           <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#F67011] to-[#873800] cursor-pointer hover:opacity-90 transition duration-300"
             onClick={() => scrollToSection('home')}
           >
-            Bradley Magomere <span className="font-light text-[#878787] text-lg tracking-wide">(Director Brad)</span>
+            Bradley Magomere <span className="font-light text-[#878787] text-lg tracking-wide"></span>
           </h1>
 
           {/* Mobile Menu Button (Hamburger/Close Icon) */}
@@ -626,6 +626,6 @@ const Contact = React.forwardRef((props, ref) => {
     </section>
   );
 });
-Contact.displayName = 'Contact'; // Good practice for forwardRef components for debugging
+Contact.displayName = 'Contact';
 
 export default App;
