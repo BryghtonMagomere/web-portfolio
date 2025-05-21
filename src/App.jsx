@@ -194,10 +194,10 @@ function Services() {
           <div className="mt-4 pt-4 border-t border-[#F67011] text-sm text-[#878787] text-center">
             <h4 className="text-[#FFE4D0] font-semibold mb-2 text-center">Rates:</h4>
             <ul className="list-disc list-inside space-y-1 text-left sm:text-center text-xs sm:text-sm">
-              <li>Short Film/Music Video: KES 30,000+ <span className="block text-xs text-[#6b6b6b]">(Consult for quote)</span></li>
-              <li>TV Segment/Episode: KES 25,000+ <span className="block text-xs text-[#6b6b6b]">(Per segment)</span></li>
-              <li>Commercial/Ad Spot: KES 40,000+ <span className="block text-xs text-[#6b6b6b]">(Concept to basic prod.)</span></li>
-              <li>Day Rate (Production): KES 20,000+ <span className="block text-xs text-[#6b6b6b]">(Director's fee, up to 8 hrs)</span></li>
+              <li>Short Film/Music Video: KES 15,000+ <span className="block text-xs text-[#6b6b6b]">(Consult for quote)</span></li>
+              <li>TV Segment/Episode: KES 10,000+ <span className="block text-xs text-[#6b6b6b]">(Per segment)</span></li>
+              <li>Commercial/Ad Spot: KES 20,000+ <span className="block text-xs text-[#6b6b6b]">(Concept to basic prod.)</span></li>
+              <li>Day Rate (Production): KES 8,000+ <span className="block text-xs text-[#6b6b6b]">(Director's fee, up to 8 hrs)</span></li>
             </ul>
           </div>
         </div>
@@ -214,12 +214,12 @@ function Services() {
           <div className="mt-4 pt-4 border-t border-[#F67011] text-sm text-[#878787] text-center">
             <h4 className="text-[#FFE4D0] font-semibold mb-2 text-center">Rates:</h4>
             <ul className="list-disc list-inside space-y-1 text-left sm:text-center text-xs sm:text-sm">
-              <li>Portrait Session: KES 7,000+ <span className="block text-xs text-[#6b6b6b]">(1hr, 10 edited photos)</span></li>
-              <li>Event Hourly: KES 3,500/hr+ <span className="block text-xs text-[#6b6b6b]">(Min. 2 hrs)</span></li>
-              <li>Event Half-Day (4hrs): KES 13,000+</li>
-              <li>Event Full-Day (8hrs): KES 25,000+</li>
-              <li>Commercial Shoot: KES 15,000+ <span className="block text-xs text-[#6b6b6b]">(Consult for specifics)</span></li>
-              <li>Additional Edited Photo: KES 300</li>
+              <li>Portrait Session: KES 4,000+ <span className="block text-xs text-[#6b6b6b]">(1hr, 10 edited photos)</span></li>
+              <li>Event Hourly: KES 2,000/hr+ <span className="block text-xs text-[#6b6b6b]">(Min. 2 hrs)</span></li>
+              <li>Event Half-Day (4hrs): KES 7,000+</li>
+              <li>Event Full-Day (8hrs): KES 12,000+</li>
+              <li>Commercial Shoot: KES 10,000+ <span className="block text-xs text-[#6b6b6b]">(Consult for specifics)</span></li>
+              <li>Additional Edited Photo: KES 200</li>
             </ul>
           </div>
         </div>
@@ -236,12 +236,12 @@ function Services() {
           <div className="mt-4 pt-4 border-t border-[#F67011] text-sm text-[#878787] text-center">
             <h4 className="text-[#FFE4D0] font-semibold mb-2 text-center">Rates:</h4>
             <ul className="list-disc list-inside space-y-1 text-left sm:text-center text-xs sm:text-sm">
-              <li>Event Hourly: KES 7,000/hr+ <span className="block text-xs text-[#6b6b6b]">(Min. 2 hrs, basic edit)</span></li>
-              <li>Event Half-Day (4hrs): KES 20,000+ <span className="block text-xs text-[#6b6b6b]">(Edited highlight)</span></li>
-              <li>Event Full-Day (8hrs): KES 45,000+ <span className="block text-xs text-[#6b6b6b]">(Comprehensive edit)</span></li>
-              <li>Corporate Video: KES 40,000+ <span className="block text-xs text-[#6b6b6b]">(Short promo, consult)</span></li>
-              <li>Basic Package: KES 25,000+ <span className="block text-xs text-[#6b6b6b]">(e.g. Simple promo, ~2min)</span></li>
-              <li>Standard Package: KES 40,000+ <span className="block text-xs text-[#6b6b6b]">(e.g. Event highlight, ~5min)</span></li>
+              <li>Event Hourly: KES 4,000/hr+ <span className="block text-xs text-[#6b6b6b]">(Min. 2 hrs, basic edit)</span></li>
+              <li>Event Half-Day (4hrs): KES 12,000+ <span className="block text-xs text-[#6b6b6b]">(Edited highlight)</span></li>
+              <li>Event Full-Day (8hrs): KES 25,000+ <span className="block text-xs text-[#6b6b6b]">(Comprehensive edit)</span></li>
+              <li>Corporate Video: KES 20,000+ <span className="block text-xs text-[#6b6b6b]">(Short promo, consult)</span></li>
+              <li>Basic Package: KES 12,000+ <span className="block text-xs text-[#6b6b6b]">(e.g. Simple promo, ~2min)</span></li>
+              <li>Standard Package: KES 25,000+ <span className="block text-xs text-[#6b6b6b]">(e.g. Event highlight, ~5min)</span></li>
             </ul>
           </div>
         </div>
@@ -258,10 +258,10 @@ function Services() {
           <div className="mt-4 pt-4 border-t border-[#F67011] text-sm text-[#878787] text-center">
             <h4 className="text-[#FFE4D0] font-semibold mb-2 text-center">Rates:</h4>
             <ul className="list-disc list-inside space-y-1 text-left sm:text-center text-xs sm:text-sm">
-              <li>Video Editing Project: KES 8,000+ <span className="block text-xs text-[#6b6b6b]">(Basic, complexity dependent)</span></li>
-              <li>Photo Retouching: KES 300-500/photo <span className="block text-xs text-[#6b6b6b]">(Complexity based)</span></li>
-              <li>Hourly Editing Rate: KES 3,500/hr+</li>
-              <li>Basic Editing Package: KES 15,000+ <span className="block text-xs text-[#6b6b6b]">(Approx. 5-6 hrs work)</span></li>
+              <li>Video Editing Project: KES 5,000+ <span className="block text-xs text-[#6b6b6b]">(Basic, complexity dependent)</span></li>
+              <li>Photo Retouching: KES 200-400/photo <span className="block text-xs text-[#6b6b6b]">(Complexity based)</span></li>
+              <li>Hourly Editing Rate: KES 2,000/hr+</li>
+              <li>Basic Editing Package: KES 8,000+ <span className="block text-xs text-[#6b6b6b]">(Approx. 5-6 hrs work)</span></li>
             </ul>
           </div>
         </div>
